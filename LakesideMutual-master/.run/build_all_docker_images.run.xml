@@ -7,7 +7,6 @@
     <toRun name="build_customer-self-service-frontend" type="docker-deploy" />
     <toRun name="build_policy-management-backend" type="docker-deploy" />
     <toRun name="build_policy-management-frontend" type="docker-deploy" />
-    <toRun name="build_risk-management-server" type="docker-deploy" />
     <toRun name="build_spring-boot-admin" type="docker-deploy" />
     <method v="2" />
   </configuration>

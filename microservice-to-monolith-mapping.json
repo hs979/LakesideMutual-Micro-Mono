@@ -1,0 +1,284 @@
+{
+  "_description": "Mapping from each microservice's classes to their corresponding monolith classes. 'mapped_to_monolith' shows original → monolith FQN pairs. 'deleted_in_monolith' shows classes that were removed during conversion with reasons.",
+
+  "customer-core": {
+    "mapped_to_monolith": {
+      "com.lakesidemutual.customercore.application.CustomerService": "com.lakesidemutual.application.CustomerService",
+      "com.lakesidemutual.customercore.application.DataLoader": "com.lakesidemutual.infrastructure.CustomerDataLoader",
+      "com.lakesidemutual.customercore.application.Page": "com.lakesidemutual.application.Page",
+      "com.lakesidemutual.customercore.domain.city.CityLookupService": "com.lakesidemutual.domain.customer.CityLookupService",
+      "com.lakesidemutual.customercore.domain.customer.Address": "com.lakesidemutual.domain.customer.Address",
+      "com.lakesidemutual.customercore.domain.customer.CustomerAggregateRoot": "com.lakesidemutual.domain.customer.CustomerAggregateRoot",
+      "com.lakesidemutual.customercore.domain.customer.CustomerFactory": "com.lakesidemutual.domain.customer.CustomerFactory",
+      "com.lakesidemutual.customercore.domain.customer.CustomerId": "com.lakesidemutual.domain.customer.CustomerId",
+      "com.lakesidemutual.customercore.domain.customer.CustomerProfileEntity": "com.lakesidemutual.domain.customer.CustomerProfileEntity",
+      "com.lakesidemutual.customercore.infrastructure.CustomerRepository": "com.lakesidemutual.infrastructure.CustomerRepository",
+      "com.lakesidemutual.customercore.interfaces.CityReferenceDataHolder": "com.lakesidemutual.interfaces.core.CoreCityController",
+      "com.lakesidemutual.customercore.interfaces.CustomerInformationHolder": "com.lakesidemutual.interfaces.core.CoreCustomerController",
+      "com.lakesidemutual.customercore.interfaces.OldCustomerInformationHolder": "com.lakesidemutual.interfaces.core.CoreOldCustomerController",
+      "com.lakesidemutual.customercore.interfaces.converters.StringToCustomerIdConverter": "com.lakesidemutual.interfaces.converters.StringToCustomerIdConverter",
+      "com.lakesidemutual.customercore.interfaces.dtos.city.CitiesResponseDto": "com.lakesidemutual.interfaces.dtos.city.CitiesResponseDto",
+      "com.lakesidemutual.customercore.interfaces.dtos.customer.AddressDto": "com.lakesidemutual.interfaces.dtos.customer.AddressDto",
+      "com.lakesidemutual.customercore.interfaces.dtos.customer.CustomerNotFoundException": "com.lakesidemutual.interfaces.dtos.customer.CustomerNotFoundException",
+      "com.lakesidemutual.customercore.interfaces.dtos.customer.CustomerProfileUpdateRequestDto": "com.lakesidemutual.interfaces.dtos.customer.CustomerProfileUpdateRequestDto",
+      "com.lakesidemutual.customercore.interfaces.dtos.customer.CustomerResponseDto": "com.lakesidemutual.interfaces.dtos.customer.CustomerResponseDto",
+      "com.lakesidemutual.customercore.interfaces.dtos.customer.CustomersResponseDto": "com.lakesidemutual.interfaces.dtos.customer.CustomersResponseDto",
+      "com.lakesidemutual.customercore.interfaces.dtos.customer.PaginatedCustomerResponseDto": "com.lakesidemutual.interfaces.dtos.customer.PaginatedCustomerResponseDto",
+      "com.lakesidemutual.customercore.interfaces.ErrorController": "com.lakesidemutual.interfaces.ErrorController",
+      "com.lakesidemutual.customercore.interfaces.validation.PhoneNumber": "com.lakesidemutual.interfaces.validation.PhoneNumber",
+      "com.lakesidemutual.customercore.interfaces.validation.PhoneNumberValidator": "com.lakesidemutual.interfaces.validation.PhoneNumberValidator"
+    },
+    "deleted_in_monolith": {
+      "com.lakesidemutual.customercore.CustomerCoreApplication": "merged into com.lakesidemutual.LakesideMutualApplication",
+      "com.lakesidemutual.customercore.interfaces.configuration.APIKeyAuthenticationManager": "API Key auth removed; customer-core is now internal",
+      "com.lakesidemutual.customercore.interfaces.configuration.APIKeyAuthFilter": "API Key auth removed; customer-core is now internal",
+      "com.lakesidemutual.customercore.interfaces.configuration.RequestLoggingFilterConfig": "replaced by unified RequestTracingFilter from policy-management",
+      "com.lakesidemutual.customercore.interfaces.configuration.SwaggerConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.SwaggerConfiguration",
+      "com.lakesidemutual.customercore.interfaces.configuration.WebConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.WebConfiguration",
+      "com.lakesidemutual.customercore.interfaces.configuration.WebSecurityConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.WebSecurityConfiguration",
+      "com.lakesidemutual.customercore.interfaces.configuration.WebServicesConfiguration": "SOAP/WSDL configuration not needed in monolith"
+    }
+  },
+
+  "customer-management-backend": {
+    "mapped_to_monolith": {
+      "com.lakesidemutual.customermanagement.domain.interactionlog.InteractionEntity": "com.lakesidemutual.domain.interactionlog.InteractionEntity",
+      "com.lakesidemutual.customermanagement.domain.interactionlog.InteractionLogAggregateRoot": "com.lakesidemutual.domain.interactionlog.InteractionLogAggregateRoot",
+      "com.lakesidemutual.customermanagement.domain.interactionlog.InteractionLogService": "com.lakesidemutual.domain.interactionlog.InteractionLogService",
+      "com.lakesidemutual.customermanagement.domain.interactionlog.Notification": "com.lakesidemutual.domain.interactionlog.Notification",
+      "com.lakesidemutual.customermanagement.infrastructure.InteractionLogRepository": "com.lakesidemutual.infrastructure.InteractionLogRepository",
+      "com.lakesidemutual.customermanagement.interfaces.CustomerInformationHolder": "com.lakesidemutual.interfaces.management.ManagementCustomerController",
+      "com.lakesidemutual.customermanagement.interfaces.CustomerMessageController": "com.lakesidemutual.interfaces.management.CustomerMessageController",
+      "com.lakesidemutual.customermanagement.interfaces.InteractionLogInformationHolder": "com.lakesidemutual.interfaces.management.InteractionLogController",
+      "com.lakesidemutual.customermanagement.interfaces.NotificationInformationHolder": "com.lakesidemutual.interfaces.management.NotificationController",
+      "com.lakesidemutual.customermanagement.interfaces.configuration.WebSocketConfiguration": "com.lakesidemutual.interfaces.configuration.WebSocketConfiguration",
+      "com.lakesidemutual.customermanagement.interfaces.dtos.AddressDto": "com.lakesidemutual.interfaces.dtos.management.AddressDto",
+      "com.lakesidemutual.customermanagement.interfaces.dtos.CustomerCoreNotAvailableException": "com.lakesidemutual.interfaces.dtos.management.CustomerCoreNotAvailableException",
+      "com.lakesidemutual.customermanagement.interfaces.dtos.CustomerDto": "com.lakesidemutual.interfaces.dtos.management.CustomerDto",
+      "com.lakesidemutual.customermanagement.interfaces.dtos.CustomerNotFoundException": "com.lakesidemutual.interfaces.dtos.management.CustomerNotFoundException",
+      "com.lakesidemutual.customermanagement.interfaces.dtos.CustomerProfileDto": "com.lakesidemutual.interfaces.dtos.management.CustomerProfileDto",
+      "com.lakesidemutual.customermanagement.interfaces.dtos.CustomersDto": "com.lakesidemutual.interfaces.dtos.management.CustomersDto",
+      "com.lakesidemutual.customermanagement.interfaces.dtos.InteractionAcknowledgementDto": "com.lakesidemutual.interfaces.dtos.management.InteractionAcknowledgementDto",
+      "com.lakesidemutual.customermanagement.interfaces.dtos.InteractionLogNotFoundException": "com.lakesidemutual.interfaces.dtos.management.InteractionLogNotFoundException",
+      "com.lakesidemutual.customermanagement.interfaces.dtos.MessageDto": "com.lakesidemutual.interfaces.dtos.management.MessageDto",
+      "com.lakesidemutual.customermanagement.interfaces.dtos.NotificationDto": "com.lakesidemutual.interfaces.dtos.management.NotificationDto",
+      "com.lakesidemutual.customermanagement.interfaces.dtos.PaginatedCustomerResponseDto": "com.lakesidemutual.interfaces.dtos.management.PaginatedCustomerResponseDto"
+    },
+    "deleted_in_monolith": {
+      "com.lakesidemutual.customermanagement.CustomerManagementApplication": "merged into com.lakesidemutual.LakesideMutualApplication",
+      "com.lakesidemutual.customermanagement.domain.customer.CustomerId": "replaced by common com.lakesidemutual.domain.customer.CustomerId",
+      "com.lakesidemutual.customermanagement.infrastructure.APIKeyRequestInterceptor": "API Key auth removed; customer-core is now internal",
+      "com.lakesidemutual.customermanagement.infrastructure.CustomerCoreClient": "OpenFeign client removed; replaced by direct CustomerService calls",
+      "com.lakesidemutual.customermanagement.infrastructure.CustomerCoreClientConfiguration": "Feign configuration removed",
+      "com.lakesidemutual.customermanagement.infrastructure.CustomerCoreRemoteProxy": "replaced by direct com.lakesidemutual.application.CustomerService calls",
+      "com.lakesidemutual.customermanagement.interfaces.configuration.DefaultAuthenticatedRestTemplateClient": "RestTemplate client removed; no HTTP calls needed in monolith",
+      "com.lakesidemutual.customermanagement.interfaces.configuration.HeaderRequestInterceptor": "HTTP header interceptor removed; no HTTP calls needed",
+      "com.lakesidemutual.customermanagement.interfaces.configuration.SwaggerConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.SwaggerConfiguration",
+      "com.lakesidemutual.customermanagement.interfaces.configuration.WebConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.WebConfiguration",
+      "com.lakesidemutual.customermanagement.interfaces.configuration.WebSecurityConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.WebSecurityConfiguration",
+      "com.lakesidemutual.customermanagement.interfaces.ErrorController": "merged into unified com.lakesidemutual.interfaces.ErrorController"
+    }
+  },
+
+  "customer-self-service-backend": {
+    "mapped_to_monolith": {
+      "com.lakesidemutual.customerselfservice.application.DataLoader": "com.lakesidemutual.infrastructure.UserLoginDataLoader",
+      "com.lakesidemutual.customerselfservice.domain.customer.Address": "com.lakesidemutual.domain.selfservice.Address",
+      "com.lakesidemutual.customerselfservice.domain.identityaccess.UserDetailsServiceImpl": "com.lakesidemutual.domain.identityaccess.UserDetailsServiceImpl",
+      "com.lakesidemutual.customerselfservice.domain.identityaccess.UserLoginEntity": "com.lakesidemutual.domain.identityaccess.UserLoginEntity",
+      "com.lakesidemutual.customerselfservice.domain.identityaccess.UserSecurityDetails": "com.lakesidemutual.domain.identityaccess.UserSecurityDetails",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.CustomerDecisionEvent": "com.lakesidemutual.domain.selfservice.CustomerDecisionEvent",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.CustomerInfoEntity": "com.lakesidemutual.domain.selfservice.CustomerInfoEntity",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.InsuranceOptionsEntity": "com.lakesidemutual.domain.selfservice.InsuranceOptionsEntity",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.InsuranceQuoteEntity": "com.lakesidemutual.domain.selfservice.InsuranceQuoteEntity",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.InsuranceQuoteExpiredEvent": "com.lakesidemutual.domain.selfservice.InsuranceQuoteExpiredEvent",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.InsuranceQuoteRequestAggregateRoot": "com.lakesidemutual.domain.selfservice.InsuranceQuoteRequestAggregateRoot",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.InsuranceQuoteRequestEvent": "com.lakesidemutual.domain.selfservice.InsuranceQuoteRequestEvent",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.InsuranceQuoteResponseEvent": "com.lakesidemutual.domain.selfservice.InsuranceQuoteResponseEvent",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.InsuranceType": "com.lakesidemutual.domain.selfservice.InsuranceType",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.MoneyAmount": "com.lakesidemutual.domain.selfservice.MoneyAmount",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.PolicyCreatedEvent": "com.lakesidemutual.domain.selfservice.PolicyCreatedEvent",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.RequestStatus": "com.lakesidemutual.domain.selfservice.RequestStatus",
+      "com.lakesidemutual.customerselfservice.domain.insurancequoterequest.RequestStatusChange": "com.lakesidemutual.domain.selfservice.RequestStatusChange",
+      "com.lakesidemutual.customerselfservice.infrastructure.InsuranceQuoteRequestRepository": "com.lakesidemutual.infrastructure.SelfServiceInsuranceQuoteRequestRepository",
+      "com.lakesidemutual.customerselfservice.infrastructure.UserLoginRepository": "com.lakesidemutual.infrastructure.UserLoginRepository",
+      "com.lakesidemutual.customerselfservice.interfaces.AuthenticationController": "com.lakesidemutual.interfaces.selfservice.AuthenticationController",
+      "com.lakesidemutual.customerselfservice.interfaces.CityReferenceDataHolder": "com.lakesidemutual.interfaces.selfservice.SelfServiceCityController",
+      "com.lakesidemutual.customerselfservice.interfaces.CustomerInformationHolder": "com.lakesidemutual.interfaces.selfservice.SelfServiceCustomerController",
+      "com.lakesidemutual.customerselfservice.interfaces.InsuranceQuoteRequestCoordinator": "com.lakesidemutual.interfaces.selfservice.SelfServiceQuoteController",
+      "com.lakesidemutual.customerselfservice.interfaces.UserInformationHolder": "com.lakesidemutual.interfaces.selfservice.UserController",
+      "com.lakesidemutual.customerselfservice.interfaces.configuration.AuthenticationTokenFilter": "com.lakesidemutual.interfaces.configuration.AuthenticationTokenFilter",
+      "com.lakesidemutual.customerselfservice.interfaces.configuration.JwtUtils": "com.lakesidemutual.interfaces.configuration.JwtUtils",
+      "com.lakesidemutual.customerselfservice.interfaces.configuration.RateLimitInterceptor": "com.lakesidemutual.interfaces.configuration.RateLimitInterceptor",
+      "com.lakesidemutual.customerselfservice.interfaces.configuration.UnauthorizedHandler": "com.lakesidemutual.interfaces.configuration.UnauthorizedHandler",
+      "com.lakesidemutual.customerselfservice.interfaces.converters.StringToCustomerIdConverter": "com.lakesidemutual.interfaces.converters.SelfServiceStringToCustomerIdConverter",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.customer.AddressDto": "com.lakesidemutual.interfaces.dtos.selfservice.customer.AddressDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.customer.CustomerCoreNotAvailableException": "com.lakesidemutual.interfaces.dtos.selfservice.customer.CustomerCoreNotAvailableException",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.customer.CustomerDto": "com.lakesidemutual.interfaces.dtos.selfservice.customer.CustomerDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.customer.CustomerIdDto": "com.lakesidemutual.interfaces.dtos.selfservice.customer.CustomerIdDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.customer.CustomerNotFoundException": "com.lakesidemutual.interfaces.dtos.selfservice.customer.CustomerNotFoundException",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.customer.CustomerProfileDto": "com.lakesidemutual.interfaces.dtos.selfservice.customer.CustomerProfileDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.customer.CustomerProfileUpdateRequestDto": "com.lakesidemutual.interfaces.dtos.selfservice.customer.CustomerProfileUpdateRequestDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.customer.CustomerRegistrationRequestDto": "com.lakesidemutual.interfaces.dtos.selfservice.customer.CustomerRegistrationRequestDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.customer.CustomersDto": "com.lakesidemutual.interfaces.dtos.selfservice.customer.CustomersDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.identityaccess.AuthenticationRequestDto": "com.lakesidemutual.interfaces.dtos.selfservice.identityaccess.AuthenticationRequestDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.identityaccess.AuthenticationResponseDto": "com.lakesidemutual.interfaces.dtos.selfservice.identityaccess.AuthenticationResponseDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.identityaccess.SignupRequestDto": "com.lakesidemutual.interfaces.dtos.selfservice.identityaccess.SignupRequestDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.identityaccess.UserAlreadyExistsException": "com.lakesidemutual.interfaces.dtos.selfservice.identityaccess.UserAlreadyExistsException",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.identityaccess.UserResponseDto": "com.lakesidemutual.interfaces.dtos.selfservice.identityaccess.UserResponseDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.insurancequoterequest.CustomerInfoDto": "com.lakesidemutual.interfaces.dtos.selfservice.insurancequoterequest.CustomerInfoDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.insurancequoterequest.InsuranceOptionsDto": "com.lakesidemutual.interfaces.dtos.selfservice.insurancequoterequest.InsuranceOptionsDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.insurancequoterequest.InsuranceQuoteDto": "com.lakesidemutual.interfaces.dtos.selfservice.insurancequoterequest.InsuranceQuoteDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.insurancequoterequest.InsuranceQuoteRequestDto": "com.lakesidemutual.interfaces.dtos.selfservice.insurancequoterequest.InsuranceQuoteRequestDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.insurancequoterequest.InsuranceQuoteRequestNotFoundException": "com.lakesidemutual.interfaces.dtos.selfservice.insurancequoterequest.InsuranceQuoteRequestNotFoundException",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.insurancequoterequest.InsuranceQuoteResponseDto": "com.lakesidemutual.interfaces.dtos.selfservice.insurancequoterequest.InsuranceQuoteResponseDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.insurancequoterequest.MoneyAmountDto": "com.lakesidemutual.interfaces.dtos.selfservice.insurancequoterequest.MoneyAmountDto",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.insurancequoterequest.RequestStatusChangeDto": "com.lakesidemutual.interfaces.dtos.selfservice.insurancequoterequest.RequestStatusChangeDto",
+      "com.lakesidemutual.customerselfservice.interfaces.validation.PhoneNumber": "com.lakesidemutual.interfaces.validation.PhoneNumber",
+      "com.lakesidemutual.customerselfservice.interfaces.validation.PhoneNumberValidator": "com.lakesidemutual.interfaces.validation.PhoneNumberValidator"
+    },
+    "deleted_in_monolith": {
+      "com.lakesidemutual.customerselfservice.CustomerSelfServiceApplication": "merged into com.lakesidemutual.LakesideMutualApplication",
+      "com.lakesidemutual.customerselfservice.domain.customer.CustomerId": "replaced by common com.lakesidemutual.domain.customer.CustomerId",
+      "com.lakesidemutual.customerselfservice.infrastructure.CustomerCoreRemoteProxy": "replaced by direct com.lakesidemutual.application.CustomerService calls",
+      "com.lakesidemutual.customerselfservice.infrastructure.CustomerCoreServiceMBean": "JMX MBean for remote proxy monitoring removed",
+      "com.lakesidemutual.customerselfservice.infrastructure.PolicyManagementMessageProducer": "JMS producer replaced by com.lakesidemutual.application.SelfServiceQuoteService",
+      "com.lakesidemutual.customerselfservice.interfaces.configuration.DefaultAuthenticatedRestTemplateClient": "RestTemplate client removed; no HTTP calls needed",
+      "com.lakesidemutual.customerselfservice.interfaces.configuration.HeaderRequestInterceptor": "HTTP header interceptor removed; no HTTP calls needed",
+      "com.lakesidemutual.customerselfservice.interfaces.configuration.MessagingConfiguration": "ActiveMQ/JMS configuration removed",
+      "com.lakesidemutual.customerselfservice.interfaces.configuration.SwaggerConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.SwaggerConfiguration",
+      "com.lakesidemutual.customerselfservice.interfaces.configuration.WebConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.WebConfiguration",
+      "com.lakesidemutual.customerselfservice.interfaces.configuration.WebSecurityConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.WebSecurityConfiguration",
+      "com.lakesidemutual.customerselfservice.interfaces.dtos.city.CitiesResponseDto": "redundant; uses com.lakesidemutual.interfaces.dtos.city.CitiesResponseDto from customer-core",
+      "com.lakesidemutual.customerselfservice.interfaces.ErrorController": "merged into unified com.lakesidemutual.interfaces.ErrorController",
+      "com.lakesidemutual.customerselfservice.interfaces.InsuranceQuoteExpiredMessageConsumer": "JMS consumer replaced by com.lakesidemutual.application.SelfServiceQuoteEventListener",
+      "com.lakesidemutual.customerselfservice.interfaces.InsuranceQuoteResponseMessageConsumer": "JMS consumer replaced by com.lakesidemutual.application.SelfServiceQuoteEventListener",
+      "com.lakesidemutual.customerselfservice.interfaces.PolicyCreatedMessageConsumer": "JMS consumer replaced by com.lakesidemutual.application.SelfServiceQuoteEventListener"
+    }
+  },
+
+  "policy-management-backend": {
+    "mapped_to_monolith": {
+      "com.lakesidemutual.policymanagement.application.DataLoader": "com.lakesidemutual.infrastructure.PolicyDataLoader",
+      "com.lakesidemutual.policymanagement.application.ExpirationCheckerJob": "com.lakesidemutual.application.ExpirationCheckerJob",
+      "com.lakesidemutual.policymanagement.application.ExpirationCheckerJobConfiguration": "com.lakesidemutual.application.ExpirationCheckerJobConfiguration",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.Address": "com.lakesidemutual.domain.policy.Address",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.CustomerDecisionEvent": "com.lakesidemutual.domain.policy.CustomerDecisionEvent",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.CustomerInfoEntity": "com.lakesidemutual.domain.policy.CustomerInfoEntity",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.InsuranceOptionsEntity": "com.lakesidemutual.domain.policy.InsuranceOptionsEntity",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.InsuranceQuoteEntity": "com.lakesidemutual.domain.policy.InsuranceQuoteEntity",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.InsuranceQuoteExpiredEvent": "com.lakesidemutual.domain.policy.InsuranceQuoteExpiredEvent",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.InsuranceQuoteRequestAggregateRoot": "com.lakesidemutual.domain.policy.InsuranceQuoteRequestAggregateRoot",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.InsuranceQuoteRequestEvent": "com.lakesidemutual.domain.policy.InsuranceQuoteRequestEvent",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.InsuranceQuoteResponseEvent": "com.lakesidemutual.domain.policy.InsuranceQuoteResponseEvent",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.InsuranceType": "com.lakesidemutual.domain.policy.InsuranceType",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.PolicyCreatedEvent": "com.lakesidemutual.domain.policy.PolicyCreatedEvent",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.RequestStatus": "com.lakesidemutual.domain.policy.RequestStatus",
+      "com.lakesidemutual.policymanagement.domain.insurancequoterequest.RequestStatusChange": "com.lakesidemutual.domain.policy.RequestStatusChange",
+      "com.lakesidemutual.policymanagement.domain.policy.InsuringAgreementEntity": "com.lakesidemutual.domain.policy.InsuringAgreementEntity",
+      "com.lakesidemutual.policymanagement.domain.policy.InsuringAgreementItem": "com.lakesidemutual.domain.policy.InsuringAgreementItem",
+      "com.lakesidemutual.policymanagement.domain.policy.MoneyAmount": "com.lakesidemutual.domain.policy.MoneyAmount",
+      "com.lakesidemutual.policymanagement.domain.policy.PolicyAggregateRoot": "com.lakesidemutual.domain.policy.PolicyAggregateRoot",
+      "com.lakesidemutual.policymanagement.domain.policy.PolicyId": "com.lakesidemutual.domain.policy.PolicyId",
+      "com.lakesidemutual.policymanagement.domain.policy.PolicyPeriod": "com.lakesidemutual.domain.policy.PolicyPeriod",
+      "com.lakesidemutual.policymanagement.domain.policy.PolicyType": "com.lakesidemutual.domain.policy.PolicyType",
+      "com.lakesidemutual.policymanagement.infrastructure.InsuranceQuoteRequestRepository": "com.lakesidemutual.infrastructure.PolicyInsuranceQuoteRequestRepository",
+      "com.lakesidemutual.policymanagement.infrastructure.PolicyRepository": "com.lakesidemutual.infrastructure.PolicyRepository",
+      "com.lakesidemutual.policymanagement.interfaces.configuration.logging.RequestTracingFilter": "com.lakesidemutual.interfaces.configuration.logging.RequestTracingFilter",
+      "com.lakesidemutual.policymanagement.interfaces.converters.StringToCustomerIdDtoConverter": "com.lakesidemutual.interfaces.converters.StringToCustomerIdDtoConverter",
+      "com.lakesidemutual.policymanagement.interfaces.converters.StringToPolicyIdConverter": "com.lakesidemutual.interfaces.converters.StringToPolicyIdConverter",
+      "com.lakesidemutual.policymanagement.interfaces.CustomerInformationHolder": "com.lakesidemutual.interfaces.policy.PolicyCustomerController",
+      "com.lakesidemutual.policymanagement.interfaces.InsuranceQuoteRequestProcessingResource": "com.lakesidemutual.interfaces.policy.PolicyQuoteController",
+      "com.lakesidemutual.policymanagement.interfaces.PolicyInformationHolder": "com.lakesidemutual.interfaces.policy.PolicyController",
+      "com.lakesidemutual.policymanagement.interfaces.RiskComputationService": "com.lakesidemutual.interfaces.policy.RiskComputationController",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.CustomerCoreNotAvailableException": "com.lakesidemutual.interfaces.dtos.policy.CustomerCoreNotAvailableException",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.UnknownCustomerException": "com.lakesidemutual.interfaces.dtos.policy.UnknownCustomerException",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.customer.AddressDto": "com.lakesidemutual.interfaces.dtos.policy.customer.AddressDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.customer.CustomerDto": "com.lakesidemutual.interfaces.dtos.policy.customer.CustomerDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.customer.CustomerIdDto": "com.lakesidemutual.interfaces.dtos.policy.customer.CustomerIdDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.customer.CustomerNotFoundException": "com.lakesidemutual.interfaces.dtos.policy.customer.CustomerNotFoundException",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.customer.CustomerProfileDto": "com.lakesidemutual.interfaces.dtos.policy.customer.CustomerProfileDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.customer.CustomersDto": "com.lakesidemutual.interfaces.dtos.policy.customer.CustomersDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.customer.PaginatedCustomerResponseDto": "com.lakesidemutual.interfaces.dtos.policy.customer.PaginatedCustomerResponseDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.insurancequoterequest.CustomerInfoDto": "com.lakesidemutual.interfaces.dtos.policy.insurancequoterequest.CustomerInfoDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.insurancequoterequest.InsuranceOptionsDto": "com.lakesidemutual.interfaces.dtos.policy.insurancequoterequest.InsuranceOptionsDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.insurancequoterequest.InsuranceQuoteDto": "com.lakesidemutual.interfaces.dtos.policy.insurancequoterequest.InsuranceQuoteDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.insurancequoterequest.InsuranceQuoteRequestDto": "com.lakesidemutual.interfaces.dtos.policy.insurancequoterequest.InsuranceQuoteRequestDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.insurancequoterequest.InsuranceQuoteRequestNotFoundException": "com.lakesidemutual.interfaces.dtos.policy.insurancequoterequest.InsuranceQuoteRequestNotFoundException",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.insurancequoterequest.InsuranceQuoteResponseDto": "com.lakesidemutual.interfaces.dtos.policy.insurancequoterequest.InsuranceQuoteResponseDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.insurancequoterequest.RequestStatusChangeDto": "com.lakesidemutual.interfaces.dtos.policy.insurancequoterequest.RequestStatusChangeDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.policy.CreatePolicyRequestDto": "com.lakesidemutual.interfaces.dtos.policy.policy.CreatePolicyRequestDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.policy.InsuringAgreementDto": "com.lakesidemutual.interfaces.dtos.policy.policy.InsuringAgreementDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.policy.InsuringAgreementItemDto": "com.lakesidemutual.interfaces.dtos.policy.policy.InsuringAgreementItemDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.policy.MoneyAmountDto": "com.lakesidemutual.interfaces.dtos.policy.policy.MoneyAmountDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.policy.PaginatedPolicyResponseDto": "com.lakesidemutual.interfaces.dtos.policy.policy.PaginatedPolicyResponseDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.policy.PolicyDto": "com.lakesidemutual.interfaces.dtos.policy.policy.PolicyDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.policy.PolicyNotFoundException": "com.lakesidemutual.interfaces.dtos.policy.policy.PolicyNotFoundException",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.policy.PolicyPeriodDto": "com.lakesidemutual.interfaces.dtos.policy.policy.PolicyPeriodDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.risk.RiskFactorRequestDto": "com.lakesidemutual.interfaces.dtos.policy.risk.RiskFactorRequestDto",
+      "com.lakesidemutual.policymanagement.interfaces.dtos.risk.RiskFactorResponseDto": "com.lakesidemutual.interfaces.dtos.policy.risk.RiskFactorResponseDto"
+    },
+    "deleted_in_monolith": {
+      "com.lakesidemutual.policymanagement.PolicyManagementApplication": "merged into com.lakesidemutual.LakesideMutualApplication",
+      "com.lakesidemutual.policymanagement.domain.customer.CustomerId": "replaced by common com.lakesidemutual.domain.customer.CustomerId",
+      "com.lakesidemutual.policymanagement.infrastructure.CustomerCoreRemoteProxy": "replaced by direct com.lakesidemutual.application.CustomerService calls",
+      "com.lakesidemutual.policymanagement.infrastructure.CustomerSelfServiceMessageProducer": "JMS producer replaced by Spring ApplicationEvents",
+      "com.lakesidemutual.policymanagement.interfaces.configuration.DefaultAuthenticatedRestTemplateClient": "RestTemplate client removed; no HTTP calls needed",
+      "com.lakesidemutual.policymanagement.interfaces.configuration.HeaderRequestInterceptor": "HTTP header interceptor removed; no HTTP calls needed",
+      "com.lakesidemutual.policymanagement.interfaces.configuration.MessagingConfiguration": "ActiveMQ/JMS configuration removed",
+      "com.lakesidemutual.policymanagement.interfaces.configuration.SwaggerConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.SwaggerConfiguration",
+      "com.lakesidemutual.policymanagement.interfaces.configuration.WebConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.WebConfiguration",
+      "com.lakesidemutual.policymanagement.interfaces.configuration.WebSecurityConfiguration": "merged into unified com.lakesidemutual.interfaces.configuration.WebSecurityConfiguration",
+      "com.lakesidemutual.policymanagement.interfaces.CustomerDecisionMessageConsumer": "JMS consumer replaced by com.lakesidemutual.application.PolicyQuoteService",
+      "com.lakesidemutual.policymanagement.interfaces.InsuranceQuoteRequestMessageConsumer": "JMS consumer replaced by com.lakesidemutual.application.PolicyQuoteService",
+      "com.lakesidemutual.policymanagement.interfaces.ErrorController": "merged into unified com.lakesidemutual.interfaces.ErrorController"
+    }
+  },
+
+  "spring-boot-admin": {
+    "mapped_to_monolith": {
+      "com.lakesidemutual.springbootadmin.SpringBootAdminApplication": "com.lakesidemutual.LakesideMutualApplication"
+    },
+    "deleted_in_monolith": {}
+  },
+
+  "risk-management-server": {
+    "mapped_to_monolith": {},
+    "deleted_in_monolith": {
+      "_entire_module": "risk-management-server (Node.js) was entirely removed from both microservices and monolith versions"
+    }
+  },
+
+  "risk-management-client": {
+    "mapped_to_monolith": {},
+    "deleted_in_monolith": {
+      "_entire_module": "risk-management-client (Node.js) was entirely removed from both microservices and monolith versions"
+    }
+  },
+
+  "_monolith_new_classes": {
+    "_description": "Classes newly created in the monolith that do not directly correspond to any single microservice class. These replace JMS/ActiveMQ messaging infrastructure with direct service calls and Spring ApplicationEvents.",
+    "classes": {
+      "com.lakesidemutual.application.InsuranceQuoteExpiredApplicationEvent": "Spring ApplicationEvent replacing JMS insurance-quote-expired-event-queue",
+      "com.lakesidemutual.application.InsuranceQuoteResponseApplicationEvent": "Spring ApplicationEvent replacing JMS insurance-quote-response-event-queue",
+      "com.lakesidemutual.application.PolicyCreatedApplicationEvent": "Spring ApplicationEvent replacing JMS policy-created-event-queue",
+      "com.lakesidemutual.application.PolicyQuoteService": "Application service encapsulating logic from InsuranceQuoteRequestMessageConsumer and CustomerDecisionMessageConsumer (policy-management JMS consumers)",
+      "com.lakesidemutual.application.SelfServiceQuoteEventListener": "Spring @EventListener replacing InsuranceQuoteResponseMessageConsumer, InsuranceQuoteExpiredMessageConsumer, and PolicyCreatedMessageConsumer (self-service JMS consumers)",
+      "com.lakesidemutual.application.SelfServiceQuoteService": "Application service encapsulating logic from PolicyManagementMessageProducer (self-service JMS producer)",
+      "com.lakesidemutual.LakesideMutualApplication": "Unified main application class merging all microservice Application classes and Spring Boot Admin"
+    }
+  },
+
+  "_shared_merged_classes": {
+    "_description": "Classes in the monolith that were merged from multiple microservice sources into a single unified version.",
+    "classes": {
+      "com.lakesidemutual.interfaces.configuration.SwaggerConfiguration": ["customer-core", "customer-management-backend", "customer-self-service-backend", "policy-management-backend"],
+      "com.lakesidemutual.interfaces.configuration.WebConfiguration": ["customer-core", "customer-management-backend", "customer-self-service-backend", "policy-management-backend"],
+      "com.lakesidemutual.interfaces.configuration.WebSecurityConfiguration": ["customer-core", "customer-management-backend", "customer-self-service-backend", "policy-management-backend"],
+      "com.lakesidemutual.interfaces.ErrorController": ["customer-core", "customer-management-backend", "customer-self-service-backend", "policy-management-backend"],
+      "com.lakesidemutual.interfaces.validation.PhoneNumber": ["customer-core", "customer-self-service-backend"],
+      "com.lakesidemutual.interfaces.validation.PhoneNumberValidator": ["customer-core", "customer-self-service-backend"],
+      "com.lakesidemutual.domain.customer.CustomerId": ["customer-core", "customer-management-backend", "customer-self-service-backend", "policy-management-backend"]
+    }
+  }
+}

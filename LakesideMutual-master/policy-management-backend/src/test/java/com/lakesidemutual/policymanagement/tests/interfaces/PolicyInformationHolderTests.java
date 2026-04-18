@@ -3,7 +3,6 @@ package com.lakesidemutual.policymanagement.tests.interfaces;
 import com.lakesidemutual.policymanagement.domain.policy.PolicyAggregateRoot;
 import com.lakesidemutual.policymanagement.infrastructure.CustomerCoreRemoteProxy;
 import com.lakesidemutual.policymanagement.infrastructure.PolicyRepository;
-import com.lakesidemutual.policymanagement.infrastructure.RiskManagementMessageProducer;
 import com.lakesidemutual.policymanagement.interfaces.PolicyInformationHolder;
 import com.lakesidemutual.policymanagement.tests.TestUtils;
 import org.hamcrest.Matcher;
@@ -41,9 +40,6 @@ public class PolicyInformationHolderTests {
 
     @MockBean
     private PolicyRepository policyRepository;
-
-    @MockBean
-    private RiskManagementMessageProducer riskManagementMessageProducer;
 
     @MockBean
     private CustomerCoreRemoteProxy customerCoreRemoteProxy;

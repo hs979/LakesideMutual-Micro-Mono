@@ -108,14 +108,3 @@ services:
       - "REACT_APP_CUSTOMER_MANAGEMENT_BACKEND=http://localhost:8100"
     ports:
       - "3000:80"
-      
-  risk-management-server:
-    build: risk-management-server
-    image: lakesidemutual/risk-management-server
-    depends_on:
-      - policy-management-backend
-    environment:
-      - "ACTIVEMQ_HOST=policy-management-backend"
-      - "ACTIVEMQ_PORT=61613"
-    ports:
-      - "50051:50051"

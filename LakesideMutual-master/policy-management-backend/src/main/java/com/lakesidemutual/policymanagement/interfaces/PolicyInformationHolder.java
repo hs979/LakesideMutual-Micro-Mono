@@ -31,17 +31,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lakesidemutual.policymanagement.domain.customer.CustomerId;
-import com.lakesidemutual.policymanagement.domain.policy.DeletePolicyEvent;
 import com.lakesidemutual.policymanagement.domain.policy.InsuringAgreementEntity;
 import com.lakesidemutual.policymanagement.domain.policy.MoneyAmount;
 import com.lakesidemutual.policymanagement.domain.policy.PolicyAggregateRoot;
 import com.lakesidemutual.policymanagement.domain.policy.PolicyId;
 import com.lakesidemutual.policymanagement.domain.policy.PolicyPeriod;
 import com.lakesidemutual.policymanagement.domain.policy.PolicyType;
-import com.lakesidemutual.policymanagement.domain.policy.UpdatePolicyEvent;
 import com.lakesidemutual.policymanagement.infrastructure.CustomerCoreRemoteProxy;
 import com.lakesidemutual.policymanagement.infrastructure.PolicyRepository;
-import com.lakesidemutual.policymanagement.infrastructure.RiskManagementMessageProducer;
 import com.lakesidemutual.policymanagement.interfaces.dtos.UnknownCustomerException;
 import com.lakesidemutual.policymanagement.interfaces.dtos.customer.CustomerDto;
 import com.lakesidemutual.policymanagement.interfaces.dtos.policy.CreatePolicyRequestDto;
@@ -63,9 +60,6 @@ public class PolicyInformationHolder {
 
 	@Autowired
 	private PolicyRepository policyRepository;
-
-	@Autowired
-	private RiskManagementMessageProducer riskManagementMessageProducer;
 
 	@Autowired
 	private CustomerCoreRemoteProxy customerCoreRemoteProxy;
@@ -98,10 +92,7 @@ public class PolicyInformationHolder {
 		PolicyAggregateRoot policy = new PolicyAggregateRoot(id, customerId, new Date(), policyPeriod, policyType, deductible, policyLimit, insurancePremium, insuringAgreement);
 		policyRepository.save(policy);
 
-		CustomerDto customer = customers.get(0);
 		PolicyDto policyDto = createPolicyDtos(Arrays.asList(policy), "").get(0);
-		final UpdatePolicyEvent event = new UpdatePolicyEvent(request.getRemoteAddr(), new Date(), customer, policyDto);
-		riskManagementMessageProducer.emitEvent(event);
 		return ResponseEntity.ok(policyDto);
 	}
 
@@ -144,11 +135,6 @@ public class PolicyInformationHolder {
 		policy.setInsuringAgreement(insuringAgreement);
 		policyRepository.save(policy);
 
-		CustomerDto customer = customers.get(0);
-		PolicyDto policyDto = createPolicyDtos(Arrays.asList(policy), "").get(0);
-		final UpdatePolicyEvent event = new UpdatePolicyEvent(request.getRemoteAddr(), new Date(), customer, policyDto);
-		riskManagementMessageProducer.emitEvent(event);
-
 		PolicyDto response = createPolicyDtos(Arrays.asList(policy), "").get(0);
 		return ResponseEntity.ok(response);
 	}
@@ -160,10 +146,6 @@ public class PolicyInformationHolder {
 			HttpServletRequest request) {
 		logger.info("Deleting policy with id '{}'", policyId.getId());
 		policyRepository.deleteById(policyId);
-
-		final DeletePolicyEvent event = new DeletePolicyEvent(request.getRemoteAddr(), new Date(), policyId.getId());
-		riskManagementMessageProducer.emitEvent(event);
-
 		return ResponseEntity.noContent().build();
 	}
 

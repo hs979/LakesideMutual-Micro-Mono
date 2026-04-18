@@ -25,6 +25,3 @@ services:
   spring-boot-admin:
     build: ../spring-boot-admin
     image: gcr.io/lakeside-mutual-2020/spring-boot-admin
-  risk-management-server:
-    build: ../risk-management-server
-    image: gcr.io/lakeside-mutual-2020/risk-management-server
